@@ -1,4 +1,4 @@
-extends CharacterBody2D
+class_name Player extends CharacterBody2D
 
 @export var speed = 450
 @export var rate_of_fire := .25
@@ -26,3 +26,6 @@ func _physics_process(_delta: float) -> void:
 	
 func shoot():
 	laser_shot.emit(laser_scene, $Muzzle.global_position)
+	
+func die():
+	queue_free()
