@@ -10,4 +10,6 @@ script = ExtResource("1_l8q1b")
 position = Vector2(263, 529)
 
 [node name="PlayerSpawnPosition" type="Marker2D" parent="."]
-position = Vector2(270, 850)
+position = Vector2(405, 1280)
+
+[node name="LaserContainer" type="Node2D" parent="."]
