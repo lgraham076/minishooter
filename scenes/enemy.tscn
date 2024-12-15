@@ -19,7 +19,6 @@ polygon = PackedVector2Array(-25.6, 1.52588e-06, -12.8, -6.4, -6.4, 19.2, 6.4, 1
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
 position = Vector2(0, -24)
-scale = Vector2(1, 0.18)
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

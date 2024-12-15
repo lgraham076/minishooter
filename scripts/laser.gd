@@ -1,6 +1,6 @@
 extends Area2D
 
-@export var speed = 800
+@export var speed = 950
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -16,5 +16,5 @@ func _on_visible_on_screen_notifier_2d_screen_exited() -> void:
 
 func _on_area_entered(area: Area2D) -> void:
 	if area is Enemy:
-		area.die()
+		area.take_damage()
 		queue_free()
