@@ -1,7 +1,7 @@
 class_name Player extends CharacterBody2D
 
-@export var speed = 450
-@export var rate_of_fire := .25
+@export var speed = 750
+@export var rate_of_fire := .5
 
 signal laser_shot(laser_scene, location)
 
@@ -23,6 +23,8 @@ func _physics_process(_delta: float) -> void:
 	velocity = direction * speed
 	
 	move_and_slide()
+	
+	global_position = global_position.clamp(Vector2.ZERO, get_viewport_rect().size)
 	
 func shoot():
 	laser_shot.emit(laser_scene, $Muzzle.global_position)
