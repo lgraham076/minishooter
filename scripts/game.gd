@@ -5,6 +5,7 @@ extends Node2D
 @onready var timer = $EnemySpawnTimer
 @onready var enemy_container = $EnemyContainer
 @onready var game_over_screen = $UILayer/GameOverScreen
+@onready var parallax_background = $ParallaxBackground
 
 @export var enemy_scenes:Array[PackedScene] = []
 
@@ -17,6 +18,8 @@ var score := 0:
 		hud.score = score
 		
 var high_score
+
+var scroll_speed = 200
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -39,11 +42,21 @@ func save_game():
 	save_file.store_32(high_score)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(_delta: float) -> void:
+func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("quit"):
 		get_tree().quit()
 	elif  Input.is_action_just_pressed("reset"):
 		get_tree().reload_current_scene()
+	
+	if timer.wait_time > 0.5:	
+		timer.wait_time -= delta * 0.005
+		print(timer.wait_time)
+	elif timer.wait_time < 0.5:
+		timer.wait_time = 0.5
+		
+	parallax_background.scroll_offset.y += delta * scroll_speed
+	if parallax_background.scroll_offset.y >= 1440:
+		parallax_background.scroll_offset.y = 0
 		
 func _on_player_laser_shot(laser_scene, location):
 	var laser = laser_scene.instantiate()

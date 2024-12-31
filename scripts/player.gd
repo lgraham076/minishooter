@@ -1,6 +1,6 @@
 class_name Player extends CharacterBody2D
 
-@export var speed = 765
+@export var speed = 767
 @export var rate_of_fire := .5
 
 signal laser_shot(laser_scene, location)
