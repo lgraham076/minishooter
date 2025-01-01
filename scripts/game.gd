@@ -6,6 +6,8 @@ extends Node2D
 @onready var enemy_container = $EnemyContainer
 @onready var game_over_screen = $UILayer/GameOverScreen
 @onready var parallax_background = $ParallaxBackground
+@onready var laser_sound = $SFX/LaserSound
+@onready var lose_sound = $SFX/LoseSound
 
 @export var enemy_scenes:Array[PackedScene] = []
 
@@ -62,8 +64,10 @@ func _on_player_laser_shot(laser_scene, location):
 	var laser = laser_scene.instantiate()
 	laser.global_position = location
 	laser_container.add_child(laser)
+	laser_sound.play()
 	
 func _on_player_killed():
+	lose_sound.play()
 	game_over_screen.set_score(score)
 	if score > high_score:
 		high_score = score
